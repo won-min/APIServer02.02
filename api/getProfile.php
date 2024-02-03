@@ -30,7 +30,7 @@ include('./serverConnectionAndRequest.php');
         $프로필사진경로 = $row['profile_image'];
         $배경사진경로 = $row['background_image'];
         $휴대폰번호 = $row['phone_number'];
-
+                      
         //프로필사진이 있다면 base64인코딩
         if(file_exists($프로필사진경로)){
             

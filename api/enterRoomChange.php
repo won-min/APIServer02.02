@@ -33,6 +33,11 @@ include('./serverConnectionAndRequest.php');
 
 
     $array['성공여부'] = $성공여부;
+    if($입장여부 === 'true'){
+        $array['입장여부'] = true;
+    }else{
+        $array['입장여부'] = false;
+    }
 
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode($array);

@@ -114,7 +114,7 @@
         ));
 
         //설정된 옵션으로 실행
-        $response = curl_exec($핸들);
+        // $response = curl_exec($핸들);///////////////////////////////////////////
         // $다듬은response = str_replace('\\', '', $response);
         // $data = json_decode($response);
         // $statusCode = $data->statusCode;
@@ -159,7 +159,7 @@
         global $휴대폰번호;
         global $인증번호;
         global $인증가능시간;
-        $만료시간;
+        $만료시간=0;
 
         $만료시간 = time() + $인증가능시간;
         $만료타임스탬프 = date('Y-m-d H:i:s', $만료시간);

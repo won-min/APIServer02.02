@@ -12,12 +12,19 @@
 
 
     // PHP랑 mysql이랑 연결
-    $hostname = "wonmin-virtual-machine"; 
-    $user = "root"; 
+
+    // $hostname = "43.200.181.222"; 
+    $hostname = "localhost"; 
+    $user = "ubuntu"; 
     $password = "dnjsalschl12";
-    $dbname = "talk"; 
+    $dbname = "talktalk"; 
 
     $connect = new mysqli($hostname, $user, $password, $dbname);
+
+    // Check connection
+    if ($connect->connect_error) {
+        die("Connection failed: " . $connect->connect_error);
+    }
 
     //HTTP의 raw한 body를 읽는 함수(json으로된거 읽을 수 있는) + json 해독 함수
     $requestBody = file_get_contents("php://input");

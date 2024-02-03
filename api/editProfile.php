@@ -24,26 +24,36 @@ include('./serverConnectionAndRequest.php');
     //프로필사진 경로 만들기 및 이동
     $프로필저장경로 = $row['profile_image'];
     if(!empty($_FILES['profile_image'])){
+
         $프로필임시저장경로 = $_FILES['profile_image']['tmp_name'];
+        $exist1 = file_exists($프로필임시저장경로);////////////////
+        $readable1 = is_readable($프로필임시저장경로);//////////////
         $프로필파일이름 = time().rand(0, 20).$_FILES['profile_image']['name'];
-        $프로필저장할폴더 = './userImage/';
-        // $프로필저장경로 = $프로필저장할폴더.$프로필파일이름;
-        $프로필저장경로 = realpath($프로필저장할폴더) . '/' . $프로필파일이름;
-        move_uploaded_file($프로필임시저장경로, $프로필저장경로);
+        $프로필저장할폴더 = '/var/talktalk/userImage';
+        $프로필저장경로 = $프로필저장할폴더 . '/' . $프로필파일이름;
+        $destinationDir1 = dirname($프로필저장경로); //////////
+        $writable1 = is_writable($destinationDir1); //////////////
+
+        $success1 = move_uploaded_file($프로필임시저장경로, $프로필저장경로);
         $프로필사진변경여부 = true;
+        $error1 = $_FILES['profile_image']['error'];
     }
     
 
     //배경사진 경로 만들기 및 이동
     $배경저장경로 = $row['background_image'];
-    if(!empty($_FILES['backgrouned_image'])){
+    if(!empty($_FILES['background_image'])){
         $배경임시저장경로 = $_FILES['background_image']['tmp_name'];
+        $exist2 = file_exists($배경임시저장경로);////////////////
+        $readable2 = is_readable($배경임시저장경로);//////////////
         $배경파일이름 = time().rand(0, 20).$_FILES['background_image']['name'];
-        $배경저장할폴더 = './userImage/';
-        // $배경저장경로 = $배경저장할폴더.$배경파일이름;
-        $배경저장경로 = realpath($배경저장할폴더) . '/' . $배경파일이름;
-        move_uploaded_file($배경임시저장경로, $배경저장경로);
+        $배경저장할폴더 = '/var/talktalk/userImage';
+        $배경저장경로 = $배경저장할폴더 . '/' . $배경파일이름;
+        $destinationDir2 = dirname($프로필저장경로); //////////
+        $writable2 = is_writable($destinationDir2); //////////////
+        $success2 = move_uploaded_file($배경임시저장경로, $배경저장경로);
         $배경사진변경여부 = true;
+        $error1 = $_FILES['background_image']['error'];
     }
     
 

@@ -97,10 +97,7 @@ include('./serverConnectionAndRequest.php');
             
             //날짜 세팅
             $dateTime = new DateTime($row['add_date']); // mysql에서 뽑은 타임스탬프 변환
-            $datString = $dateTime->format('A g:i'); // 형식 맞추기
-            $datString = str_replace('PM', '오후', $datString);
-            $datString = str_replace('AM', '오전', $datString);
-            $chatMessageList['날짜'] = $datString;// 형식에 맞춰 반환
+            $chatMessageList['날짜'] = ($dateTime->getTimestamp())*1000; // 밀리세컨드로 변환
 
             //안읽은사람수 세팅
             $chatMessageList['안읽은사람수'] = get안읽은사람수($chatRoomSeq, $row['message_seq']);
@@ -125,6 +122,22 @@ include('./serverConnectionAndRequest.php');
                     $chatMessageList['is_other'] = true;
                 }
             }
+            if((string)$row['is_video'] === (string)1){
+                $chatMessageList['is_video'] = true;
+                $chatMessageList['내용'] = $row['content'];
+                if((string)$row['content'] === "영상통화"){
+                    (string)$chatMessageList['영상통화종류'] = 1;
+                }else if((string)$row['content'] === "부재중"){
+                    (string)$chatMessageList['영상통화종류'] = 2;
+                }else if((string)$row['content'] === "취소"){
+                    (string)$chatMessageList['영상통화종류'] = 3;
+                }else{
+                    (string)$chatMessageList['영상통화종류'] = 4;
+                }
+            }else{
+                $chatMessageList['is_video'] = false;
+            }
+            
 
             $tempArray[] = $chatMessageList;
         }
