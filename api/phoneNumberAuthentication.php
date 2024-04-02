@@ -9,7 +9,7 @@ include('./serverConnectionAndRequest.php');
     $휴대폰번호 = $requestData->휴대폰번호;
     $인증번호 = $requestData->인증번호;
     $성공여부 = false;
-    $휴대폰번호중복여부 = false;;
+    $휴대폰번호중복여부 = false;
 
 //phone_number
 //authentication_code
@@ -25,7 +25,6 @@ include('./serverConnectionAndRequest.php');
     //휴대폰번호를 가진 column이 있다면 인증번호 비교. 인증번호가 일치한다면 해당 휴대폰번호로 가입한 계정이 있는지 확인. 
     if($result->num_rows >0){
         $row = $result->fetch_assoc();
-
 
         if ($row['authentication_code'] === $인증번호) { //해당 휴대폰번호로 가입한 계정이 있는지 확인. 
             $성공여부 = true;

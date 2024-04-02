@@ -107,7 +107,7 @@
         $핸들 = curl_init($smsURL);
 
         curl_setopt_array($핸들, array(   //옵션을 배열로 한번에 설정한다
-            CURLOPT_POST => TRUE, // 일반적인 HTTP POST 수d행
+            CURLOPT_POST => TRUE, // 일반적인 HTTP POST 수행
             CURLOPT_RETURNTRANSFER => TRUE, // 아래 $response로 무언가를 문자열로 반환 
             CURLOPT_HTTPHEADER => $header, // 헤더
             CURLOPT_POSTFIELDS => $postFields // HTTP "POST" 작업에서 게시할 전체 데이터

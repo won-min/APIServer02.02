@@ -19,8 +19,10 @@ include('./serverConnectionAndRequest.php');
     $참여채팅방 = array();
     if($result_list->num_rows >0){
         while($row_list = $result_list->fetch_assoc()){
+            $참여채팅방 = array();
+            
             $채팅방번호 = $row_list['chat_room_seq'];
-
+            
             $sql = "SELECT *
                     FROM message
                     WHERE chat_room_seq = '$채팅방번호' AND is_neutral != 1

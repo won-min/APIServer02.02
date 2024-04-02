@@ -36,7 +36,7 @@ include('./serverConnectionAndRequest.php');
         FROM message 
         LEFT JOIN user
         ON message.user_seq = user.user_seq
-        WHERE chat_room_seq = '$chatRoomSeq' AND message.add_date > '$invitedDay'
+        WHERE chat_room_seq = '$chatRoomSeq' AND message.add_date >= '$invitedDay'
         ORDER BY message_seq DESC 
         LIMIT $bringedRowNum"; 
         
